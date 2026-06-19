@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Your Home Worth? | Peter Luo · Pinnacle Listing System</title>
+<meta name="description" content="Request a free, no-obligation home valuation and seller's guide from Peter Luo, RE/MAX Realtron — serving Richmond Hill & Markham.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     CONFIG NOTE: all the values you must fill in live in the
+     <script> at the bottom of this file, in the CONFIG object.
+     You do NOT need to touch anything in this style block.
+     ============================================================ */
+  :root{
+    --navy:#16223e;
+    --navy-deep:#0f1830;
+    --gold:#b8860b;
+    --gold-soft:#cba23a;
+    --cream:#f8f4ea;
+    --cream-card:#fffdf7;
+    --ink:#1b2540;
+    --gray:#5b6478;
+    --good:#2d7a4f;
+    --bad:#b23a3a;
+    --line:#e7dfcd;
+    --line-dark:rgba(203,162,58,.28);
+    --shadow:0 18px 50px -22px rgba(15,24,48,.55);
+    --display:'Playfair Display',Georgia,serif;
+    --body:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    background:var(--navy-deep);
+    color:var(--cream);
+    padding:14px 22px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    border-bottom:1px solid var(--line-dark);
+  }
+  .brand{display:flex;flex-direction:column;line-height:1.15;}
+  .brand .name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.3px;}
+  .brand .sub{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-soft);margin-top:2px;}
+  .lang{display:flex;border:1px solid var(--line-dark);border-radius:999px;overflow:hidden;flex:none;}
+  .lang button{
+    background:transparent;border:0;color:var(--cream);
+    font-family:var(--body);font-size:12.5px;font-weight:600;letter-spacing:.4px;
+    padding:6px 13px;cursor:pointer;transition:background .18s,color .18s;
+  }
+  .lang button.active{background:var(--gold);color:var(--navy-deep);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(120% 90% at 50% -10%, #20305a 0%, var(--navy) 46%, var(--navy-deep) 100%);
+    color:var(--cream);
+    padding:54px 22px 120px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:18px;
+    border:1px solid var(--line-dark);
+    pointer-events:none;
+    -webkit-mask:linear-gradient(#000,transparent 78%);
+    mask:linear-gradient(#000,transparent 78%);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:20px;
+  }
+  .eyebrow::before,.eyebrow::after{content:"";width:26px;height:1px;background:var(--line-dark);}
+  .hero h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(30px,7.4vw,50px);
+    line-height:1.08;letter-spacing:-.4px;
+    max-width:13ch;margin:0 auto;
+  }
+  .hero h1 em{color:var(--gold-soft);font-style:italic;}
+  .hero p.lede{
+    margin:20px auto 0;max-width:42ch;
+    font-size:clamp(15px,3.9vw,17.5px);color:#cfd6e6;
+  }
+  .assurances{
+    list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+    gap:9px 10px;margin:30px auto 0;max-width:520px;
+  }
+  .assurances li{
+    font-size:12.5px;font-weight:600;color:#dfe4f0;
+    border:1px solid var(--line-dark);border-radius:999px;
+    padding:7px 14px 7px 12px;display:flex;align-items:center;gap:7px;
+  }
+  .assurances li svg{width:13px;height:13px;color:var(--gold-soft);flex:none;}
+
+  /* ---------- form card ---------- */
+  .stage{padding:0 18px 64px;}
+  .card{
+    background:var(--cream-card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    max-width:560px;margin:-86px auto 0;
+    padding:30px 26px 30px;
+    position:relative;z-index:2;
+  }
+  .card-head{text-align:center;margin-bottom:24px;}
+  .card-head .seal{
+    width:46px;height:46px;border-radius:50%;
+    border:1.5px solid var(--gold);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
+  }
+  .card-head .seal svg{width:22px;height:22px;}
+  .card-head h2{font-family:var(--display);font-weight:600;font-size:23px;letter-spacing:-.2px;}
+  .card-head p{font-size:13.5px;color:var(--gray);margin-top:6px;}
+
+  /* request-type chips */
+  .wants{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:22px;}
+  .want{
+    position:relative;border:1.5px solid var(--line);border-radius:12px;
+    padding:15px 14px 14px;cursor:pointer;transition:border-color .16s,background .16s,box-shadow .16s;
+    display:flex;gap:11px;align-items:flex-start;background:#fff;
+  }
+  .want:hover{border-color:var(--gold-soft);}
+  .want input{position:absolute;opacity:0;pointer-events:none;}
+  .want .tick{
+    width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);
+    flex:none;margin-top:1px;display:flex;align-items:center;justify-content:center;
+    transition:background .16s,border-color .16s;
+  }
+  .want .tick svg{width:12px;height:12px;color:#fff;opacity:0;transition:opacity .16s;}
+  .want .wt{font-weight:600;font-size:14px;display:block;}
+  .want .ws{font-size:11.5px;color:var(--gray);margin-top:2px;display:block;line-height:1.4;}
+  .want input:checked ~ .tick{background:var(--gold);border-color:var(--gold);}
+  .want input:checked ~ .tick svg{opacity:1;}
+  .want.sel{border-color:var(--gold);background:#fffaf0;box-shadow:0 0 0 3px rgba(184,134,11,.08);}
+  .want input:focus-visible ~ .tick{outline:2px solid var(--gold);outline-offset:2px;}
+
+  .field{margin-bottom:15px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.2px;}
+  .field label .req{color:var(--gold);}
+  .field input,.field select,.field textarea{
+    width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:10px;
+    padding:12px 13px;transition:border-color .16s,box-shadow .16s;
+  }
+  .field textarea{resize:vertical;min-height:72px;}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,134,11,.12);
+  }
+  .field input::placeholder,.field textarea::placeholder{color:#a7adba;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+  .field.err input,.field.err select{border-color:var(--bad);}
+  .field .errmsg{display:none;color:var(--bad);font-size:11.5px;margin-top:5px;font-weight:600;}
+  .field.err .errmsg{display:block;}
+  .addr-wrap{transition:opacity .2s;}
+
+  /* honeypot — never shown */
+  .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden;}
+
+  .submit{
+    width:100%;margin-top:8px;
+    background:var(--gold);color:var(--navy-deep);
+    font-family:var(--body);font-weight:700;font-size:15.5px;letter-spacing:.3px;
+    border:0;border-radius:11px;padding:16px;cursor:pointer;
+    transition:transform .12s,background .16s,box-shadow .16s;
+    box-shadow:0 10px 22px -10px rgba(184,134,11,.7);
+  }
+  .submit:hover{background:#a87a09;transform:translateY(-1px);}
+  .submit:active{transform:translateY(0);}
+  .submit:disabled{opacity:.65;cursor:wait;transform:none;}
+  .privacy{font-size:11.5px;color:var(--gray);text-align:center;margin-top:14px;line-height:1.5;}
+
+  /* ---------- success / error states ---------- */
+  .state{display:none;text-align:center;padding:8px 4px 6px;}
+  .state.show{display:block;animation:fade .4s ease both;}
+  .state .ring{
+    width:64px;height:64px;border-radius:50%;margin:0 auto 18px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .state.ok .ring{background:rgba(45,122,79,.12);color:var(--good);}
+  .state.fail .ring{background:rgba(178,58,58,.1);color:var(--bad);}
+  .state .ring svg{width:30px;height:30px;}
+  .state h2{font-family:var(--display);font-weight:600;font-size:24px;margin-bottom:8px;}
+  .state p{color:var(--gray);font-size:14.5px;max-width:38ch;margin:0 auto;}
+  .guide-btn{
+    display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+    background:var(--navy);color:var(--cream);text-decoration:none;
+    font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:11px;
+    transition:background .16s,transform .12s;
+  }
+  .guide-btn:hover{background:var(--navy-deep);transform:translateY(-1px);}
+  .guide-btn svg{width:17px;height:17px;color:var(--gold-soft);}
+  .callout{
+    margin-top:22px;font-size:14px;color:var(--ink);
+    border-top:1px solid var(--line);padding-top:18px;
+  }
+  .callout a{color:var(--gold);font-weight:700;text-decoration:none;white-space:nowrap;}
+
+  /* ---------- credentials strip ---------- */
+  .creds{max-width:560px;margin:30px auto 0;padding:0 4px;text-align:center;}
+  .creds .who{font-family:var(--display);font-size:18px;font-weight:600;}
+  .creds .role{font-size:12.5px;color:var(--gray);margin-top:3px;}
+  .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
+  .badge{
+    font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);
+    border:1px solid var(--line);border-radius:999px;padding:6px 13px;background:#fff;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--navy-deep);color:#aeb6c8;
+    text-align:center;padding:30px 22px 34px;margin-top:54px;
+    font-size:12px;line-height:1.7;
+  }
+  footer .fname{font-family:var(--display);color:var(--cream);font-size:15px;font-weight:600;}
+  footer a{color:var(--gold-soft);text-decoration:none;}
+  footer .fine{margin-top:12px;font-size:10.5px;color:#6f7891;max-width:46ch;margin-inline:auto;}
+
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .hero,.card{animation:fade .55s ease both;}
+  .card{animation-delay:.08s;}
+
+  @media (max-width:430px){
+    .wants{grid-template-columns:1fr;}
+    .row2{grid-template-columns:1fr;}
+    .card{padding:26px 18px;}
+    .hero{padding:44px 18px 110px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">
+      <span class="name">Peter Luo</span>
+      <span class="sub">Pinnacle Listing System</span>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <span class="eyebrow" data-i="eyebrow">Richmond Hill &amp; Markham</span>
+    <h1 data-i="h1">What's your home worth in <em data-i="h1em">today's market?</em></h1>
+    <p class="lede" data-i="lede">Get a free, no-obligation valuation prepared by a local listing specialist — plus my complete seller's guide, sent to you instantly.</p>
+    <ul class="assurances">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span data-i="a1">Free &amp; no obligation</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span data-i="a2">Local market data</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span data-i="a3">English &amp; 中文</span></li>
+    </ul>
+  </header>
+
+  <main class="stage">
+    <section class="card" aria-live="polite">
+
+      <!-- ===== FORM ===== -->
+      <div id="formWrap">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+          </div>
+          <h2 data-i="cardh">Request your home value</h2>
+          <p data-i="cardp">Takes under a minute. No account or sign-in needed.</p>
+        </div>
+
+        <form id="leadForm" novalidate>
+          <!-- request type -->
+          <div class="wants">
+            <label class="want sel">
+              <input type="checkbox" name="want_valuation" checked>
+              <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><span class="wt" data-i="w1t">Home valuation</span><span class="ws" data-i="w1s">A pricing range for your property</span></span>
+            </label>
+            <label class="want sel">
+              <input type="checkbox" name="want_guide" checked>
+              <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><span class="wt" data-i="w2t">Seller's guide</span><span class="ws" data-i="w2s">Instant download after you submit</span></span>
+            </label>
+          </div>
+
+          <div class="row2">
+            <div class="field" data-field="name">
+              <label data-i="lname">Full name <span class="req">*</span></label>
+              <input type="text" name="name" autocomplete="name" placeholder="Jane Smith">
+              <span class="errmsg" data-i="ename">Please enter your name</span>
+            </div>
+            <div class="field" data-field="phone">
+              <label data-i="lphone">Phone <span class="req">*</span></label>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="(647) 000-0000">
+              <span class="errmsg" data-i="ephone">Please enter a phone number</span>
+            </div>
+          </div>
+
+          <div class="field" data-field="email">
+            <label data-i="lemail">Email <span class="req">*</span></label>
+            <input type="email" name="email" autocomplete="email" placeholder="you@email.com">
+            <span class="errmsg" data-i="eemail">Please enter a valid email</span>
+          </div>
+
+          <div class="field addr-wrap" data-field="address">
+            <label data-i="laddr">Property address <span class="req" id="addrReq">*</span></label>
+            <input type="text" name="address" autocomplete="street-address" placeholder="123 Maple Ave, Richmond Hill">
+            <span class="errmsg" data-i="eaddr">Please enter the property address</span>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label data-i="ltime">Best time to reach you</label>
+              <select name="preferred_time">
+                <option value="Anytime" data-i="t0">Anytime</option>
+                <option value="Morning" data-i="t1">Morning</option>
+                <option value="Afternoon" data-i="t2">Afternoon</option>
+                <option value="Evening" data-i="t3">Evening</option>
+              </select>
+            </div>
+            <div class="field">
+              <label data-i="llang">Preferred language</label>
+              <select name="contact_language">
+                <option value="English" data-i="cl0">English</option>
+                <option value="Mandarin / 普通话" data-i="cl1">Mandarin / 普通话</option>
+                <option value="Either" data-i="cl2">Either</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label data-i="lmsg">Anything else? <span style="font-weight:400;color:var(--gray)" data-i="opt">(optional)</span></label>
+            <textarea name="message" placeholder="Timeline, questions, or details about your home…"></textarea>
+          </div>
+
+          <!-- honeypot: humans never see or fill this -->
+          <div class="hp" aria-hidden="true">
+            <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <button type="submit" class="submit" id="submitBtn" data-i="submit">Get my home value</button>
+          <p class="privacy" data-i="privacy">Your details go straight to Peter — never shared or sold. You'll hear back within one business day.</p>
+        </form>
+      </div>
+
+      <!-- ===== SUCCESS ===== -->
+      <div class="state ok" id="okState">
+        <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h2 data-i="okh">Thank you — it's on its way.</h2>
+        <p data-i="okp">I've received your request and I'll personally reach out within one business day with your home's value.</p>
+        <a href="#" class="guide-btn" id="guideBtn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i="okguide">Download the seller's guide</span>
+        </a>
+        <div class="callout" data-i="okcall">Prefer to talk now? Call or text <a href="tel:+16478243718">647-824-3718</a></div>
+      </div>
+
+      <!-- ===== ERROR ===== -->
+      <div class="state fail" id="failState">
+        <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h2 data-i="failh">That didn't go through.</h2>
+        <p data-i="failp">Something blocked the submission. Please call or text me directly and I'll take care of it right away.</p>
+        <div class="callout"><a href="tel:+16478243718">647-824-3718</a> &nbsp;·&nbsp; <a href="mailto:peterluo@peterluo.com">peterluo@peterluo.com</a></div>
+        <a href="#" class="guide-btn" id="retryBtn" style="margin-top:18px;background:var(--gold);color:var(--navy-deep)"><span data-i="retry">Try again</span></a>
+      </div>
+
+    </section>
+
+    <section class="creds">
+      <div class="who">Peter Luo</div>
+      <div class="role" data-i="role">Real Estate Broker · RE/MAX Realtron Realty Inc., Brokerage</div>
+      <div class="badges">
+        <span class="badge">SRS</span>
+        <span class="badge">MCNE</span>
+        <span class="badge" data-i="bilingual">EN · 中文</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="fname">Peter Luo</div>
+    <div data-i="frole">Real Estate Broker · RE/MAX Realtron Realty Inc., Brokerage</div>
+    <div><a href="tel:+16478243718">647-824-3718</a> &nbsp;·&nbsp; <a href="mailto:peterluo@peterluo.com">peterluo@peterluo.com</a></div>
+    <div class="fine" data-i="ffine">Not intended to solicit properties already listed for sale or buyers/sellers under a representation agreement. A valuation is an estimate of market value and is not a formal appraisal.</div>
+  </footer>
+
+<script type="module">
+/* ============================================================================
+   1) CONFIG — FILL IN THESE THREE THINGS. Nothing else needs editing.
+
+   PUSH NOTIFICATION NOTE:
+   The Pushover phone buzz is sent SERVER-SIDE by the Firebase Cloud Function
+   (see functions/index.js), NOT from this page — that keeps your Pushover app
+   token secret. So there's nothing about Pushover to configure here. This page
+   just writes the lead to Firestore; the function does the rest.
+   ============================================================================ */
+const CONFIG = {
+
+  // (A) Web3Forms — the instant email + permanent record (independent backup).
+  //     Get a free access key at https://web3forms.com (enter peterluo@peterluo.com).
+  web3formsKey: "REPLACE-WITH-YOUR-WEB3FORMS-ACCESS-KEY",
+
+  // (B) Seller's guide — the PDF sellers download on the thank-you screen.
+  //     Host the PDF (e.g. on peterluo.homes) and paste its full URL here.
+  guideUrl: "https://peterluo.homes/sellers-guide.pdf",
+
+  // (C) Firebase — writes each lead into Firestore via SILENT anonymous auth
+  //     (sellers never sign in). This write is what triggers the Pushover push,
+  //     so for the buzz to fire, this MUST be configured. Paste your web config.
+  firebase: {
+    apiKey:            "AIzaSyA0qVGs4LRXBa3AXAMVwv2rm0svO4neL0M",
+    authDomain:        "pltuls.firebaseapp.com",
+    projectId:         "pltuls",
+    storageBucket:     "pltuls.firebasestorage.app",
+    messagingSenderId: "1051163830614",
+    appId:             "1:1051163830614:web:749bfca4e49245cc2bcef7"
+  },
+  leadsCollection: "leads"
+};
+
+/* ============================================================================
+   2) BILINGUAL COPY  (EN / 中文)
+   ============================================================================ */
+const I18N = {
+  en:{
+    eyebrow:"Richmond Hill & Markham",
+    h1:"What's your home worth in", h1em:"today's market?",
+    lede:"Get a free, no-obligation valuation prepared by a local listing specialist — plus my complete seller's guide, sent to you instantly.",
+    a1:"Free & no obligation", a2:"Local market data", a3:"English & 中文",
+    cardh:"Request your home value", cardp:"Takes under a minute. No account or sign-in needed.",
+    w1t:"Home valuation", w1s:"A pricing range for your property",
+    w2t:"Seller's guide", w2s:"Instant download after you submit",
+    lname:"Full name", ename:"Please enter your name",
+    lphone:"Phone", ephone:"Please enter a phone number",
+    lemail:"Email", eemail:"Please enter a valid email",
+    laddr:"Property address", eaddr:"Please enter the property address",
+    ltime:"Best time to reach you", t0:"Anytime", t1:"Morning", t2:"Afternoon", t3:"Evening",
+    llang:"Preferred language", cl0:"English", cl1:"Mandarin / 普通话", cl2:"Either",
+    lmsg:"Anything else?", opt:"(optional)",
+    submit:"Get my home value",
+    privacy:"Your details go straight to Peter — never shared or sold. You'll hear back within one business day.",
+    okh:"Thank you — it's on its way.",
+    okp:"I've received your request and I'll personally reach out within one business day with your home's value.",
+    okguide:"Download the seller's guide",
+    okcall:"Prefer to talk now? Call or text 647-824-3718",
+    failh:"That didn't go through.",
+    failp:"Something blocked the submission. Please call or text me directly and I'll take care of it right away.",
+    retry:"Try again",
+    role:"Real Estate Broker · RE/MAX Realtron Realty Inc., Brokerage",
+    frole:"Real Estate Broker · RE/MAX Realtron Realty Inc., Brokerage",
+    bilingual:"EN · 中文",
+    ffine:"Not intended to solicit properties already listed for sale or buyers/sellers under a representation agreement. A valuation is an estimate of market value and is not a formal appraisal.",
+    sending:"Sending…"
+  },
+  zh:{
+    eyebrow:"列治文山 & 万锦",
+    h1:"在当前市场，您的房屋", h1em:"价值多少？",
+    lede:"由本地上市专家为您提供免费、无义务的房屋估值，并立即发送我的完整卖房指南。",
+    a1:"免费 · 无义务", a2:"本地市场数据", a3:"中文 & English",
+    cardh:"获取房屋估值", cardp:"一分钟内完成，无需注册或登录。",
+    w1t:"房屋估值", w1s:"为您的房产提供价格区间",
+    w2t:"卖房指南", w2s:"提交后立即下载",
+    lname:"姓名", ename:"请输入您的姓名",
+    lphone:"电话", ephone:"请输入电话号码",
+    lemail:"电子邮箱", eemail:"请输入有效的电子邮箱",
+    laddr:"房产地址", eaddr:"请输入房产地址",
+    ltime:"最佳联系时间", t0:"任何时间", t1:"上午", t2:"下午", t3:"晚上",
+    llang:"首选语言", cl0:"英文", cl1:"普通话 / Mandarin", cl2:"皆可",
+    lmsg:"其他说明？", opt:"（选填）",
+    submit:"获取我的房屋估值",
+    privacy:"您的信息将直接发送给 Peter，绝不外泄或出售。您将在一个工作日内收到回复。",
+    okh:"感谢您 —— 已经收到。",
+    okp:"我已收到您的请求，并将在一个工作日内亲自与您联系，告知您房屋的估值。",
+    okguide:"下载卖房指南",
+    okcall:"想现在沟通？致电或短信 647-824-3718",
+    failh:"提交未成功。",
+    failp:"提交被中断。请直接致电或发短信给我，我会立即为您处理。",
+    retry:"重试",
+    role:"房地产经纪人 · RE/MAX Realtron Realty Inc., Brokerage",
+    frole:"房地产经纪人 · RE/MAX Realtron Realty Inc., Brokerage",
+    bilingual:"中文 · EN",
+    ffine:"本广告无意招揽已委托其他经纪上市的房产，或已签订代理协议的买卖双方。估值为市场价值的估计，并非正式评估。",
+    sending:"发送中…"
+  }
+};
+
+/* ============================================================================
+   3) LANGUAGE SWITCHING
+   ============================================================================ */
+let LANG = (navigator.language || "en").toLowerCase().startsWith("zh") ? "zh" : "en";
+
+function applyLang(lang){
+  LANG = lang;
+  document.documentElement.lang = (lang === "zh") ? "zh-CN" : "en";
+  const dict = I18N[lang];
+  document.querySelectorAll("[data-i]").forEach(el=>{
+    const key = el.getAttribute("data-i");
+    if(dict[key] != null) el.textContent = dict[key];
+  });
+  document.querySelectorAll(".lang button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+}
+document.querySelectorAll(".lang button").forEach(b=>{
+  b.addEventListener("click", ()=>applyLang(b.dataset.lang));
+});
+
+/* ============================================================================
+   4) FIREBASE (optional, silent anonymous auth)
+   ============================================================================ */
+let fbAddDoc=null, fbCollection=null, fbDb=null, fbServerTs=null, fbReady=false;
+async function initFirebase(){
+  if(!CONFIG.firebase.apiKey) return;            // not configured -> skip
+  try{
+    const appMod  = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+    const authMod = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+    const fsMod   = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+    const app = appMod.initializeApp(CONFIG.firebase);
+    const auth = authMod.getAuth(app);
+    await authMod.signInAnonymously(auth);       // invisible to the seller
+    fbDb = fsMod.getFirestore(app);
+    fbAddDoc = fsMod.addDoc; fbCollection = fsMod.collection; fbServerTs = fsMod.serverTimestamp;
+    fbReady = true;
+  }catch(err){
+    console.warn("Firestore unavailable (email + push will still work):", err);
+  }
+}
+initFirebase();
+
+/* ============================================================================
+   5) HELPERS — read campaign source from the QR link (?src=...)
+   ============================================================================ */
+const params = new URLSearchParams(location.search);
+const SOURCE = params.get("src") || params.get("utm_source") || "direct";
+
+function configured(v){ return v && !String(v).startsWith("REPLACE-WITH"); }
+
+/* ============================================================================
+   6) NOTIFICATION CHANNELS — fired from the page (independent, failure-tolerant)
+      NOTE: the Pushover phone buzz is NOT here — it's sent server-side by the
+      Cloud Function when the Firestore lead is created (keeps the token secret).
+   ============================================================================ */
+async function emailWeb3Forms(lead){
+  if(!configured(CONFIG.web3formsKey)) throw new Error("web3forms key not set");
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method:"POST",
+    headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+    body: JSON.stringify({
+      access_key: CONFIG.web3formsKey,
+      subject: "New seller lead: " + lead.name + (lead.address ? " — " + lead.address : ""),
+      from_name: "Pinnacle Listing System",
+      botcheck: false,
+      Name: lead.name, Phone: lead.phone, Email: lead.email,
+      Address: lead.address || "(not provided)",
+      Requested: lead.wants,
+      Best_time: lead.preferred_time,
+      Preferred_language: lead.contact_language,
+      Message: lead.message || "(none)",
+      Source: lead.source
+    })
+  });
+  const data = await res.json().catch(()=>({}));
+  if(!data.success) throw new Error("web3forms rejected");
+}
+
+async function saveFirestore(lead){
+  if(!fbReady) throw new Error("firestore not ready");
+  await fbAddDoc(fbCollection(fbDb, CONFIG.leadsCollection), {
+    ...lead, status:"new", createdAt: fbServerTs(), ua: navigator.userAgent
+  });
+}
+
+/* ============================================================================
+   7) FORM HANDLING
+   ============================================================================ */
+const form = document.getElementById("leadForm");
+const btn  = document.getElementById("submitBtn");
+const formWrap = document.getElementById("formWrap");
+const okState  = document.getElementById("okState");
+const failState= document.getElementById("failState");
+const guideBtn = document.getElementById("guideBtn");
+const wantVal  = form.querySelector('input[name="want_valuation"]');
+const wantGuide= form.querySelector('input[name="want_guide"]');
+
+// chip selected styling + toggle address requirement
+function syncChips(){
+  form.querySelectorAll(".want").forEach(w=>{
+    w.classList.toggle("sel", w.querySelector("input").checked);
+  });
+  document.getElementById("addrReq").style.display = wantVal.checked ? "" : "none";
+}
+form.querySelectorAll(".want input").forEach(i=> i.addEventListener("change", syncChips));
+syncChips();
+
+function setErr(name, on){
+  const f = form.querySelector('[data-field="'+name+'"]');
+  if(f) f.classList.toggle("err", on);
+}
+function validate(){
+  let ok = true;
+  const get = n => (form.querySelector('[name="'+n+'"]').value || "").trim();
+  setErr("name", !get("name"));      if(!get("name")) ok=false;
+  setErr("phone", !get("phone"));    if(!get("phone")) ok=false;
+  const email = get("email");
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  setErr("email", !emailOk);         if(!emailOk) ok=false;
+  if(wantVal.checked){
+    setErr("address", !get("address")); if(!get("address")) ok=false;
+  } else setErr("address", false);
+  return ok;
+}
+
+function showState(which){
+  formWrap.style.display = "none";
+  okState.classList.remove("show"); failState.classList.remove("show");
+  which.classList.add("show");
+  document.querySelector(".card").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  // honeypot: if filled, it's a bot — pretend success, send nothing
+  if((form.querySelector('[name="company_website"]').value || "").trim()){
+    showState(okState); return;
+  }
+  if(!validate()) return;
+
+  const g = n => (form.querySelector('[name="'+n+'"]').value || "").trim();
+  const wants = [
+    wantVal.checked ? "Home valuation" : null,
+    wantGuide.checked ? "Seller's guide" : null
+  ].filter(Boolean).join(" + ") || "General enquiry";
+
+  const lead = {
+    name:g("name"), phone:g("phone"), email:g("email"), address:g("address"),
+    wants, preferred_time:g("preferred_time"), contact_language:g("contact_language"),
+    message:g("message"), source:SOURCE, page_language:LANG, submittedAt:new Date().toISOString()
+  };
+
+  btn.disabled = true;
+  btn.textContent = I18N[LANG].sending;
+
+  // fire client-side channels; succeed if EITHER lands the lead.
+  // (the Pushover push fires server-side once the Firestore doc is created)
+  const results = await Promise.allSettled([
+    emailWeb3Forms(lead),
+    saveFirestore(lead)
+  ]);
+  const landed = results.some(r => r.status === "fulfilled");
+
+  if(landed){
+    // configure guide download button
+    if(wantGuide.checked && configured(CONFIG.guideUrl)){
+      guideBtn.href = CONFIG.guideUrl;
+      guideBtn.style.display = "";
+    } else {
+      guideBtn.style.display = "none";
+    }
+    showState(okState);
+  } else {
+    btn.disabled = false;
+    btn.textContent = I18N[LANG].submit;
+    showState(failState);
+  }
+});
+
+document.getElementById("retryBtn").addEventListener("click",(e)=>{
+  e.preventDefault();
+  failState.classList.remove("show");
+  formWrap.style.display = "";
+  document.querySelector(".card").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+/* ============================================================================
+   8) INIT
+   ============================================================================ */
+applyLang(LANG);
+</script>
+</body>
+</html>
