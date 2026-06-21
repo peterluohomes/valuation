@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What's Your Home Worth? | Peter Luo · Pinnacle Listing System</title>
-<meta name="description" content="Request a free, no-obligation home valuation and seller's guide from Peter Luo, RE/MAX Realtron — serving Richmond Hill & Markham.">
+<meta name="description" content="Request a free, no-obligation home valuation from Peter Luo, RE/MAX Realtron — serving Richmond Hill & Markham.">
 
 <!-- ============================================================
      Open Graph — controls the Facebook / LinkedIn link-preview card.
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://peterluo.homes/valuation">
 <meta property="og:title" content="What's Your Home Worth in Today's Market?">
-<meta property="og:description" content="Get a free, no-obligation home valuation from a local Richmond Hill &amp; Markham specialist — plus an instant seller's guide.">
+<meta property="og:description" content="Get a free, no-obligation home valuation from a local Richmond Hill &amp; Markham specialist.">
 <meta property="og:image" content="https://peterluo.homes/valuation/preview.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -284,7 +284,7 @@
   <header class="hero">
     <span class="eyebrow" data-i="eyebrow">Richmond Hill &amp; Markham</span>
     <h1 data-i="h1">What's your home worth in <em data-i="h1em">today's market?</em></h1>
-    <p class="lede" data-i="lede">Get a free, no-obligation valuation prepared by a local listing specialist — plus my complete seller's guide, sent to you instantly.</p>
+    <p class="lede" data-i="lede">Get a free, no-obligation valuation prepared by a local listing specialist, with current neighbourhood market data.</p>
     <ul class="assurances">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span data-i="a1">Free &amp; no obligation</span></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span data-i="a2">Local market data</span></li>
@@ -306,20 +306,6 @@
         </div>
 
         <form id="leadForm" novalidate>
-          <!-- request type -->
-          <div class="wants">
-            <label class="want sel">
-              <input type="checkbox" name="want_valuation" checked>
-              <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span><span class="wt" data-i="w1t">Home valuation</span><span class="ws" data-i="w1s">A pricing range for your property</span></span>
-            </label>
-            <label class="want sel">
-              <input type="checkbox" name="want_guide" checked>
-              <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span><span class="wt" data-i="w2t">Seller's guide</span><span class="ws" data-i="w2s">Instant download after you submit</span></span>
-            </label>
-          </div>
-
           <div class="row2">
             <div class="field" data-field="name">
               <label data-i="lname">Full name <span class="req">*</span></label>
@@ -385,10 +371,6 @@
         <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h2 data-i="okh">Thank you — it's on its way.</h2>
         <p data-i="okp">I've received your request and I'll personally reach out within one business day with your home's value.</p>
-        <a href="#" class="guide-btn" id="guideBtn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i="okguide">Download the seller's guide</span>
-        </a>
         <div class="callout" data-i="okcall">Prefer to talk now? Call or text <a href="tel:+16478243718">647-824-3718</a></div>
       </div>
 
@@ -439,7 +421,6 @@ const CONFIG = {
 
   // (B) Seller's guide — the PDF sellers download on the thank-you screen.
   //     Host the PDF (e.g. on peterluo.homes) and paste its full URL here.
-  guideUrl: "https://peterluo.homes/sellers-guide.pdf",
 
   // (C) Firebase — writes each lead into Firestore via SILENT anonymous auth
   //     (sellers never sign in). This write is what triggers the Pushover push,
@@ -462,7 +443,7 @@ const I18N = {
   en:{
     eyebrow:"Richmond Hill & Markham",
     h1:"What's your home worth in", h1em:"today's market?",
-    lede:"Get a free, no-obligation valuation prepared by a local listing specialist — plus my complete seller's guide, sent to you instantly.",
+    lede:"Get a free, no-obligation valuation prepared by a local listing specialist, with current neighbourhood market data.",
     a1:"Free & no obligation", a2:"Local market data", a3:"English & 中文",
     cardh:"Request your home value", cardp:"Takes under a minute. No account or sign-in needed.",
     w1t:"Home valuation", w1s:"A pricing range for your property",
@@ -492,7 +473,7 @@ const I18N = {
   zh:{
     eyebrow:"列治文山 & 万锦",
     h1:"在当前市场，您的房屋", h1em:"价值多少？",
-    lede:"由本地上市专家为您提供免费、无义务的房屋估值，并立即发送我的完整卖房指南。",
+    lede:"由本地上市专家为您提供免费、无义务的房屋估值，并结合最新的本地市场数据。",
     a1:"免费 · 无义务", a2:"本地市场数据", a3:"中文 & English",
     cardh:"获取房屋估值", cardp:"一分钟内完成，无需注册或登录。",
     w1t:"房屋估值", w1s:"为您的房产提供价格区间",
@@ -570,6 +551,21 @@ initFirebase();
 const params = new URLSearchParams(location.search);
 const SOURCE = params.get("src") || params.get("utm_source") || "direct";
 
+/* CTA framings — choose with ?cta=1|2|3 */
+const CTAS = {
+  "1":{},  // default = base copy
+  "2":{ en:{ eyebrow:"Just Sold Nearby", h1:"Your neighbour just sold —", h1em:"what's yours worth?",
+             lede:"A home near you just sold. Curious what today's market means for your value? Get a free, no-obligation estimate." },
+        zh:{ eyebrow:"附近刚成交", h1:"您的邻居刚卖房 ——", h1em:"您的房子值多少？",
+             lede:"您附近有一套房刚刚成交。想知道当前市场对您房屋价值意味着什么吗？获取免费、无义务的估值。" } },
+  "3":{ en:{ eyebrow:"Thinking of selling?", h1:"Thinking of selling", h1em:"this year?",
+             lede:"Start with the number that matters — a free, no-obligation valuation of your home in today's market." },
+        zh:{ eyebrow:"考虑卖房？", h1:"今年考虑", h1em:"出售房屋？",
+             lede:"从最关键的数字开始 —— 在当前市场，为您的房屋提供免费、无义务的估值。" } }
+};
+const CTA = params.get("cta") || "1";
+if(CTAS[CTA]){ ["en","zh"].forEach(l=>{ if(CTAS[CTA][l]) Object.assign(I18N[l], CTAS[CTA][l]); }); }
+
 function configured(v){ return v && !String(v).startsWith("REPLACE-WITH"); }
 
 /* ============================================================================
@@ -615,19 +611,6 @@ const btn  = document.getElementById("submitBtn");
 const formWrap = document.getElementById("formWrap");
 const okState  = document.getElementById("okState");
 const failState= document.getElementById("failState");
-const guideBtn = document.getElementById("guideBtn");
-const wantVal  = form.querySelector('input[name="want_valuation"]');
-const wantGuide= form.querySelector('input[name="want_guide"]');
-
-// chip selected styling + toggle address requirement
-function syncChips(){
-  form.querySelectorAll(".want").forEach(w=>{
-    w.classList.toggle("sel", w.querySelector("input").checked);
-  });
-  document.getElementById("addrReq").style.display = wantVal.checked ? "" : "none";
-}
-form.querySelectorAll(".want input").forEach(i=> i.addEventListener("change", syncChips));
-syncChips();
 
 function setErr(name, on){
   const f = form.querySelector('[data-field="'+name+'"]');
@@ -641,9 +624,7 @@ function validate(){
   const email = get("email");
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   setErr("email", !emailOk);         if(!emailOk) ok=false;
-  if(wantVal.checked){
-    setErr("address", !get("address")); if(!get("address")) ok=false;
-  } else setErr("address", false);
+  setErr("address", !get("address")); if(!get("address")) ok=false;
   return ok;
 }
 
@@ -664,15 +645,12 @@ form.addEventListener("submit", async (e)=>{
   if(!validate()) return;
 
   const g = n => (form.querySelector('[name="'+n+'"]').value || "").trim();
-  const wants = [
-    wantVal.checked ? "Home valuation" : null,
-    wantGuide.checked ? "Seller's guide" : null
-  ].filter(Boolean).join(" + ") || "General enquiry";
+  const wants = "Home valuation";
 
   const lead = {
     name:g("name"), phone:g("phone"), email:g("email"), address:g("address"),
     wants, preferred_time:g("preferred_time"), contact_language:g("contact_language"),
-    message:g("message"), source:SOURCE, page_language:LANG, submittedAt:new Date().toISOString()
+    message:g("message"), source:SOURCE, cta:CTA, page_language:LANG, submittedAt:new Date().toISOString()
   };
 
   btn.disabled = true;
@@ -687,13 +665,6 @@ form.addEventListener("submit", async (e)=>{
   const landed = results.some(r => r.status === "fulfilled");
 
   if(landed){
-    // configure guide download button
-    if(wantGuide.checked && configured(CONFIG.guideUrl)){
-      guideBtn.href = CONFIG.guideUrl;
-      guideBtn.style.display = "";
-    } else {
-      guideBtn.style.display = "none";
-    }
     showState(okState);
   } else {
     btn.disabled = false;
